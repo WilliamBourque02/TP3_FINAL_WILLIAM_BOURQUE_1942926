@@ -20,7 +20,7 @@ from tkinter import messagebox as msg
 # Mise en relation du chemin d'accès pour le dossier de travail 
 #path = "C:/Users/willb/Documents/GitHub/TP2_Native_WilliamBourque_GOOD"
 db = os.getcwd()
-db = "C:/Users/willb\Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
+db = "C:/Users/willb/Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
 Index = 0
 
 # Fonction pour permettre l'utilisation de fonctions SQL ainsi que l'utilisation de
@@ -171,6 +171,7 @@ def CheckifFilmEmpty(id):
         
 
 
+# Fonction permettant de vérifier si la photo est la bonne, sinon il retourne une photo anonymous
 # Fonction permettant de vérifier si la photo est la bonne, sinon il retourne une photo anonymous
 def CheckPhoto(realisateur):
     global photo
@@ -534,9 +535,9 @@ def modifyQuoteWindow():
 # Cette Fonction contrôle le fait de delete une des citations dans la base de données
 def deleteQuote():
 
-    Auteur, Desc, Titre, Date, Synopsis, Trailer, Keywords, RealisateurID, = ReadDB(Index)
+    realisateur,naissance,desc,titre,date, synopsis, trailer, keywords, realisateurID = ReadDB(Index)
 
-    ID = GetID(RealisateurID, Titre, Synopsis)
+    ID = GetID(realisateurID, titre, synopsis)
 
     WarningBoxDelete = messagebox.askquestion(title="warning", message="Delete ?")
 
@@ -591,8 +592,8 @@ def showUI():
 # Affichage de l'écran principal et les options qui entourent cet affichage
 root=Tk()
 root.title("Films de William")
-logoQuotes =Image.open("QuotesLogo.png")
-logoQuotes = ImageTk.PhotoImage(logoQuotes)
+#logoQuotes =Image.open("QuotesLogo.png")
+#logoQuotes = ImageTk.PhotoImage(logoQuotes)
 root.geometry("1000x1000")
 root.resizable(width=False,height=False)
 root.configure(background='black')
