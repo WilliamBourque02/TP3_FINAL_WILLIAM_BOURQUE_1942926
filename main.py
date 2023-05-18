@@ -556,7 +556,7 @@ def showUI():
 
     # Radiobuttons de langues
     buttonFr.grid(row=0,column=0,sticky="w",pady=5,padx=5)
-    buttonEn.place(x=75,y=5)
+    buttonEn.place(x=120,y=5)
 
     # Entry et button pour le filtre
     keywordTextInput.place(x=65,y=38)
@@ -627,7 +627,7 @@ varUpdateKeywords = StringVar()
 
 
 # Définition des différents frames présents dans l'écran principal
-FrameTop = Frame(root,borderwidth=1,width=1000,background="blue",height=120)
+FrameTop = Frame(root,borderwidth=1,width=1000,background="orange",height=120)
 FrameQuote = Frame(root,borderwidth=1,height=600,background="black",width=1000)
 FrameButton = Frame(root,borderwidth=1,height=25,width=1000, background="black")
 FrameTop.grid(row=0,column=0,sticky="we")
@@ -638,8 +638,8 @@ FrameButton.grid(row=1,column=0,sticky="s")
 FrameButton.grid_propagate(0)
 
 # Radio Button pour sélectionner la langue de la citation
-buttonFr = Radiobutton(FrameTop, text="Films",value="fr",command=partial(Refresh))
-buttonEn = Radiobutton(FrameTop,text="William", value="en",command=partial(Refresh))
+buttonFr = Radiobutton(FrameTop, text="William Bourque",value="fr",command=partial(Refresh))
+buttonEn = Radiobutton(FrameTop,text="1942926", value="en",command=partial(Refresh))
 
 # Entry pour que l'utilisateur y inscrit ses mots clées
 keywordTextInput = Entry(FrameTop,textvariable=varFilter, x = 100)
@@ -673,7 +673,10 @@ labelDescription = Label(FrameQuote,text="Description",textvariable=varDescripti
 
 labelPhoto = Label(FrameQuote,height=150,width=150)
 
-labelLogo= Label(FrameTop,image=logoQuotes)
+labelLogo= Label(FrameTop, text="Films de Will", font=("Verdana", 48,), anchor="center", background="orange", foreground="white")
+
+
+#    labelLogoAdd.place(x=180,y=30)
 
 labelKeyword = Label(FrameTop,text="Mot(s) :")
 
