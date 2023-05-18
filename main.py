@@ -44,7 +44,7 @@ def SQLRequest(Request):
 # try / except pour trouver les potentielles erreurs plus facilement
 def SQLRequestView(Request):
     db = os.getcwd()
-    db = "C:/Users/willb\Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
+    db = "C:/Users/willb/Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
     connection=sqlite3.connect(db, timeout=10)
     cursor=connection.cursor()
 
@@ -244,7 +244,7 @@ def randomFilm():
 def ReadDB(Index):
     global table
     db = os.getcwd()
-    db = "C:/Users/willb\Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
+    db = "C:/Users/willb/Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
     table = Fetch(varFilter.get())
 
     # Si la table est vide, le programme va chercher le filtre
@@ -261,10 +261,10 @@ def ReadDB(Index):
     Fields=table[Index]
     realisateurID=Fields[0]
     titre=Fields[1]
-    synopsis=Fields[2]
-    trailer=Fields[3]
-    date=Fields[4]
-    keywords=Fields[6]
+    synopsis=Fields[3]
+    trailer=Fields[4]
+    date=Fields[2]
+    keywords=Fields[5]
     realisateur=Fields[7]
     naissance=Fields[8]
     desc=Fields[9]
@@ -339,7 +339,7 @@ def GetID(Realisateurid,Titre,Synopsis):
 # Variable global pour déterminer le début de la seconde fenêtre (ajouter)   
 global second
 db = os.getcwd()
-db = "C:/Users/willb\Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
+db = "C:/Users/willb/Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
 # Cette Fonction contrôle la fenêtre pour ajouter des films dans la base de données
 def addNewQuoteWindow():
     connection=sqlite3.connect(db, timeout=10)
@@ -396,24 +396,24 @@ def addNewQuoteWindow():
     buttonSave = Button(FrameInput,text="Save", command=insertData)
     buttonSave.grid(row=5,column=0,pady=550,padx=700,sticky="se")
     
-    labelLogoAdd = Label(FrameTopSecond,text="Ajouter un film", font=("Verdana", 36), anchor="center", background="blue", foreground="white")
+    labelLogoAdd = Label(FrameTopSecond,text="Ajouter un film", font=("Verdana", 36,), anchor="center", background="orange", foreground="white")
     labelLogoAdd.place(x=180,y=30)
 
-    labelInputRealisator = Label(FrameInput, text=" Realisateur :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputRealisator = Label(FrameInput, text=" Realisateur :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputRealisator.place(x=180, y=30)
-    labelInputBirth = Label(FrameInput, text="Naissance :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputBirth = Label(FrameInput, text="Naissance :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputBirth.place(x = 180, y=60)
-    labelInputDesc = Label(FrameInput, text="Description :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputDesc = Label(FrameInput, text="Description :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputDesc.place(x = 180, y=90)
-    labelInputTitle = Label(FrameInput, text="Titre :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputTitle = Label(FrameInput, text="Titre :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputTitle.place(x = 180, y=120)
-    labelInputDate = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputDate = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputDate.place(x = 180, y=150)
-    labelInputSynopsis = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputSynopsis = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputSynopsis.place(x = 180, y=180)
-    labelInputTrailer = Label(FrameInput, text="Trailer :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputTrailer = Label(FrameInput, text="Trailer :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputTrailer.place(x = 180, y=210)
-    labelInputKeyword = Label(FrameInput, text="Keywords :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputKeyword = Label(FrameInput, text="Keywords :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputKeyword.place(x = 180, y=240)
 
 
@@ -439,7 +439,7 @@ def addNewQuoteWindow():
 # Variable global pour déterminer le début de la troisième fenêtre (modifier)   
 global third
 db = os.getcwd()
-db = "C:/Users/willb\Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
+db = "C:/Users/willb/Documents/GitHub/TP3_FINAL_WILLIAM_BOURQUE_1942926/films.db"
 # Cette Fonction contrôle la fenêtre de modification des citations dans la base de données
 def modifyQuoteWindow():
     connection=sqlite3.connect(db, timeout=10)
@@ -469,21 +469,18 @@ def modifyQuoteWindow():
         entryInputTrailer.configure(textvariable=varUpdateTrailer)
         entryInputKeyword.configure(textvariable=varUpdateKeywords)
 
-       
-        
+        realisateur, naissance, desc, titre, date, synopsis, trailer, keywords, realisateurID = ReadDB(Index)
 
-        Realisateur,Naissance,Desc,Titre,Date, Synopsis, Trailer, Mots_clés, RealisateurID = ReadDB(Index)
+        ID = GetID(realisateurID, titre, date, synopsis, trailer, keywords)
 
-        ID = GetID(RealisateurID, Titre, Synopsis)
-
-        Titre = varUpdateTitle.get()
-        Date = varUpdateDate.get()
-        Synopsis = varUpdateSynopsis.get()
-        Trailer = varUpdateTrailer.get()
-        Mots_clés = varUpdateKeywords.get()
+        titre = varUpdateTitle.get()
+        date = varUpdateDate.get()
+        synopsis = varUpdateSynopsis.get()
+        trailer = varUpdateTrailer.get()
+        keywords = varUpdateKeywords.get()
 
 
-        SQLRequest(f'UPDATE Films SET Titre = "{Titre}", Date = "{Date}", Synopsis = "{Synopsis}", Trailer = "{Trailer}", Mots_clés = "{Mots_clés}" WHERE rowid ="{ID}"')
+        SQLRequest(f'UPDATE Films SET Titre = "{titre}", Date = "{date}", Synopsis = "{synopsis}", Trailer = "{trailer}", Mots_clés = "{keywords}" WHERE rowid ="{ID}"')
         second.destroy()
         Next()
     
@@ -493,53 +490,45 @@ def modifyQuoteWindow():
     buttonSave = Button(FrameInput,text="Save", command=updateData)
     buttonSave.grid(row=5,column=0,pady=550,padx=700,sticky="se")
     
-    
+    labelLogoModify = Label(FrameTopSecond,text="Modifier un film", font=("Verdana", 36), anchor="center", background="orange", foreground="white")
+    labelLogoModify.place(x=180,y=30)
     labelInputTitle = Label(FrameInput, text="Titre :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
-    labelInputTitle.place(x = 180, y=30)
+    labelInputTitle.place(x=180, y=30)
     labelInputDate = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
-    labelInputDate.place(x = 180, y=60)
-    labelInputSynopsis = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
-    labelInputSynopsis.place(x = 180, y=90)
+    labelInputDate.place(x = 180, y=90)
+    labelInputSynopsis = Label(FrameInput, text="Synopsis :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputSynopsis.place(x = 180, y=150)
     labelInputTrailer = Label(FrameInput, text="Trailer :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
-    labelInputTrailer.place(x = 180, y=120)
-    labelInputKeyword = Label(FrameInput, text="Keywords :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
-    labelInputKeyword.place(x = 180, y=150)
+    labelInputTrailer.place(x = 180, y=210)
+    labelInputKeywords = Label(FrameInput, text="Mots clés :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputKeywords.place(x = 180, y=270)
+    
 
     # Assignation des valeurs de la base de données dans des variables pour les entrybox afin que le texte y soit automatiquement inscrit
-    Auteur, Desc, Titre, Date, Synopsis, Trailer, Keywords, RealisateurID, = ReadDB(Index)
-    ID = GetID(RealisateurID, Titre, Synopsis)
+    realisateur, naissance, desc, titre, date, synopsis, trailer, keywords, realisateurID = ReadDB(Index)
+    #ID = GetID(AuteurID, Citation_fr, Citation_en)
     
-    varUpdateTitle.set(Titre)
-    varUpdateDate.set(Date)
-    varUpdateSynopsis.set(Synopsis)
-    varUpdateTrailer.set(Trailer)
-    varUpdateKeywords.set(Keywords)
+    varUpdateTitle.set(titre)
+    varUpdateDate.set(date)
+    varUpdateSynopsis.set(synopsis)
+    varUpdateTrailer.set(trailer)
+    varUpdateKeywords.set(keywords)
     
     
     # Positionnement ainsi que les valeurs des entrybox pour l'écran modifier 
-    entryInputRealisator = Entry(FrameInput, font=('verdana',12), width=60, state=DISABLED)
-    entryInputRealisator.place(x=330, y=30)
-    entryInputDesc = Entry(FrameInput, font=('verdana',12), width=60, state=DISABLED)
-    entryInputDesc.place(x=330, y=60)
-
     entryInputTitle = Entry(FrameInput, font=('verdana',12), width=60, textvariable=varUpdateTitle)
-    entryInputTitle.place(x=330, y=90)
-
+    entryInputTitle.place(x=330, y=30)
     entryInputDate = Entry(FrameInput, font=('verdana',12), width=60, textvariable=varUpdateDate)
-    entryInputDate.place(x=330, y=120)
+    entryInputDate.place(x=330, y=90)
 
     entryInputSynopsis = Entry(FrameInput, font=('verdana',12), width=60, textvariable=varUpdateSynopsis)
     entryInputSynopsis.place(x=330, y=150)
 
     entryInputTrailer = Entry(FrameInput, font=('verdana',12), width=60, textvariable=varUpdateTrailer)
-    entryInputTrailer.place(x=330, y=180)
+    entryInputTrailer.place(x=330, y=210)
 
     entryInputKeyword = Entry(FrameInput, font=('verdana',12), width=60, textvariable=varUpdateKeywords)
-    entryInputKeyword.place(x=330, y=210)
-
-
-# Define a function to clear the Entry Widget Content
-
+    entryInputKeyword.place(x=330, y=270)
 
 
 # Cette Fonction contrôle le fait de delete une des citations dans la base de données
@@ -566,8 +555,8 @@ def deleteQuote():
 def showUI():
 
     # Radiobuttons de langues
-    #buttonFr.grid(row=0,column=0,sticky="w",pady=5,padx=5)
-    #buttonEn.place(x=75,y=5)
+    buttonFr.grid(row=0,column=0,sticky="w",pady=5,padx=5)
+    buttonEn.place(x=75,y=5)
 
     # Entry et button pour le filtre
     keywordTextInput.place(x=65,y=38)
@@ -593,17 +582,18 @@ def showUI():
     labelTrailer.place(x=245,y=320)
     labelRealisator.place(x=45,y=210)
     labelDescription.place(x=10,y=250)
-    labelDescription.place(x=10,y=280)
+    labelDate.place(x=10,y=280)
     labelPhoto.place(x=11,y=50)
     labelKeywordQuote.place(x=305,y=380)
     labelLogo.place(x=500,y=5)
+    labelBirth.place(x=10,y=500)
 
 # Affichage de l'écran principal et les options qui entourent cet affichage
 root=Tk()
 root.title("Films de William")
 logoQuotes =Image.open("QuotesLogo.png")
 logoQuotes = ImageTk.PhotoImage(logoQuotes)
-root.geometry("1000x700")
+root.geometry("1000x1000")
 root.resizable(width=False,height=False)
 root.configure(background='black')
 
@@ -648,8 +638,8 @@ FrameButton.grid(row=1,column=0,sticky="s")
 FrameButton.grid_propagate(0)
 
 # Radio Button pour sélectionner la langue de la citation
-#buttonFr = Radiobutton(FrameTop, text="Français",value="fr",variable=varLanguage,command=partial(Refresh))
-#buttonEn = Radiobutton(FrameTop,text="English", value="en",variable=varLanguage,command=partial(Refresh))
+buttonFr = Radiobutton(FrameTop, text="Films",value="fr",command=partial(Refresh))
+buttonEn = Radiobutton(FrameTop,text="William", value="en",command=partial(Refresh))
 
 # Entry pour que l'utilisateur y inscrit ses mots clées
 keywordTextInput = Entry(FrameTop,textvariable=varFilter, x = 100)
@@ -668,17 +658,30 @@ buttonKeyword = Button(FrameTop,text="Filtrer", padx= -100,command=partial(Refre
 
 
 #Définition des labels de l'écran principal où la plupart des options cocernant leurs affichages y sont situées
+
 labelID = Label(FrameButton,text="ID du réalisateur", textvariable=varID)
 
-labelSynopsis = Label(FrameQuote,textvariable=varSynopsis,height=20,width=80,wraplength=650)
+labelSynopsis = Label(FrameQuote,text="synopsis",textvariable=varSynopsis,height=20,width=80,wraplength=650)
+
 labelTrailer = Label(FrameQuote,text="trailer",textvariable=varTrailer,wraplength=650,height=3,width=80)
+
 labelRealisator = Label(FrameQuote,text="réalisateur",textvariable=varRealisator)
-labelTitle = Label(FrameQuote,text="titre",textvariable=varRealisator)
+
+labelTitle = Label(FrameQuote,text="titre",textvariable=varTitle)
+
 labelDescription = Label(FrameQuote,text="Description",textvariable=varDescription,wraplength=150,height=11,width=20)
+
 labelPhoto = Label(FrameQuote,height=150,width=150)
+
 labelLogo= Label(FrameTop,image=logoQuotes)
+
 labelKeyword = Label(FrameTop,text="Mot(s) :")
+
 labelKeywordQuote = Label(FrameQuote,text="Mot Clé du film",textvariable=varKeyword,wraplength=500,height=3,width=60)
+
+labelDate = Label(FrameQuote,text="date",textvariable=varDate)
+
+labelBirth = Label(FrameQuote, text="Naissance", textvariable=varBirth, wraplength=500, height=3,width=60)
 
 # Répétition des fonctions importantes au bon déroulement du programme 
 ReadDB(0)
