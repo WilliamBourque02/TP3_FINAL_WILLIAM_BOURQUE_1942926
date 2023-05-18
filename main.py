@@ -409,7 +409,7 @@ def addNewQuoteWindow():
     labelInputTitle.place(x = 180, y=120)
     labelInputDate = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputDate.place(x = 180, y=150)
-    labelInputSynopsis = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
+    labelInputSynopsis = Label(FrameInput, text="Synopsis :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputSynopsis.place(x = 180, y=180)
     labelInputTrailer = Label(FrameInput, text="Trailer :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputTrailer.place(x = 180, y=210)
@@ -449,7 +449,7 @@ def modifyQuoteWindow():
     second.title("Modifier film ")
     second.geometry("1000x700")
 
-    FrameTopSecond = Frame(second,borderwidth=1,width=1000,background="blue",height=120)
+    FrameTopSecond = Frame(second,borderwidth=1,width=1000,background="orange",height=120)
     FrameTopSecond.grid(row=0,column=0,sticky="we")
     FrameTopSecond.grid_propagate(0)
 
@@ -471,7 +471,7 @@ def modifyQuoteWindow():
 
         realisateur, naissance, desc, titre, date, synopsis, trailer, keywords, realisateurID = ReadDB(Index)
 
-        ID = GetID(realisateurID, titre, date, synopsis, trailer, keywords)
+        ID = GetID(realisateurID, titre, synopsis)
 
         titre = varUpdateTitle.get()
         date = varUpdateDate.get()
@@ -492,15 +492,15 @@ def modifyQuoteWindow():
     
     labelLogoModify = Label(FrameTopSecond,text="Modifier un film", font=("Verdana", 36), anchor="center", background="orange", foreground="white")
     labelLogoModify.place(x=180,y=30)
-    labelInputTitle = Label(FrameInput, text="Titre :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputTitle = Label(FrameInput, text="Titre :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputTitle.place(x=180, y=30)
-    labelInputDate = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputDate = Label(FrameInput, text="Date :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputDate.place(x = 180, y=90)
-    labelInputSynopsis = Label(FrameInput, text="Synopsis :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputSynopsis = Label(FrameInput, text="Synopsis :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputSynopsis.place(x = 180, y=150)
-    labelInputTrailer = Label(FrameInput, text="Trailer :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputTrailer = Label(FrameInput, text="Trailer :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputTrailer.place(x = 180, y=210)
-    labelInputKeywords = Label(FrameInput, text="Mots clés :", font=("Verdana", 14), anchor="center", background="blue", foreground="white")
+    labelInputKeywords = Label(FrameInput, text="Mots clés :", font=("Verdana", 14), anchor="center", background="orange", foreground="white")
     labelInputKeywords.place(x = 180, y=270)
     
 
@@ -577,16 +577,16 @@ def showUI():
     # Tous les différents labels de l'écran principal    
     labelKeyword.grid(row=1,column=0,sticky="w",padx=5)
     labelID.grid(row=0,column=0,padx=150)
-    labelTitle.place(x=180,y=15)
-    labelSynopsis.place(x=180,y=30)
-    labelTrailer.place(x=245,y=320)
+    labelTitle.place(x=180,y=30)
+    labelSynopsis.place(x=180,y=60)
+    labelTrailer.place(x=245,y=350)
     labelRealisator.place(x=45,y=210)
     labelDescription.place(x=10,y=250)
-    labelDate.place(x=10,y=280)
+    labelDate.place(x=580,y=30)
     labelPhoto.place(x=11,y=50)
-    labelKeywordQuote.place(x=305,y=380)
+    labelKeywordQuote.place(x=305,y=420)
     labelLogo.place(x=500,y=5)
-    labelBirth.place(x=10,y=500)
+    labelBirth.place(x=10,y=450)
 
 # Affichage de l'écran principal et les options qui entourent cet affichage
 root=Tk()
@@ -667,7 +667,7 @@ labelTrailer = Label(FrameQuote,text="trailer",textvariable=varTrailer,wraplengt
 
 labelRealisator = Label(FrameQuote,text="réalisateur",textvariable=varRealisator)
 
-labelTitle = Label(FrameQuote,text="titre",textvariable=varTitle)
+labelTitle = Label(FrameQuote,text="titre",textvariable=varTitle, wraplength=500, height=1,width=55)
 
 labelDescription = Label(FrameQuote,text="Description",textvariable=varDescription,wraplength=150,height=11,width=20)
 
@@ -682,9 +682,9 @@ labelKeyword = Label(FrameTop,text="Mot(s) :")
 
 labelKeywordQuote = Label(FrameQuote,text="Mot Clé du film",textvariable=varKeyword,wraplength=500,height=3,width=60)
 
-labelDate = Label(FrameQuote,text="date",textvariable=varDate)
+labelDate = Label(FrameQuote,text="date",textvariable=varDate, wraplength=500, height=1,width=39)
 
-labelBirth = Label(FrameQuote, text="Naissance", textvariable=varBirth, wraplength=500, height=3,width=60)
+labelBirth = Label(FrameQuote, text="Naissance", textvariable=varBirth, wraplength=500, height=3,width=20)
 
 # Répétition des fonctions importantes au bon déroulement du programme 
 ReadDB(0)
